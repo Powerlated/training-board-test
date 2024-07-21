@@ -1,0 +1,40 @@
+[package]
+name = "SensorTest"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+embassy-stm32 = { version = "0.1.0", features = [ "defmt", "time-driver-any", "stm32g070cb", "memory-x", "unstable-pac", "exti"]  }
+embassy-sync = { version = "0.6.0", features = ["defmt"] }
+embassy-executor = { version = "0.5.0",  features = ["arch-cortex-m", "executor-thread", "defmt", "integrated-timers"] }
+embassy-time = { version = "0.3.1", features = ["defmt", "defmt-timestamp-uptime", "tick-hz-32_768"] }
+embassy-usb = { version = "0.2.0", default-features = false, features = ["defmt"] }
+embassy-futures = { version = "0.1.0" }
+
+defmt = "0.3"
+defmt-rtt = "0.4"
+
+cortex-m = { version = "0.7.6", features = ["inline-asm", "critical-section-single-core"] }
+cortex-m-rt = "0.7.0"
+embedded-hal = "0.2.6"
+panic-probe = { version = "0.3", features = ["print-defmt"] }
+heapless = { version = "0.8", default-features = false }
+portable-atomic = { version = "1.5", features = ["unsafe-assume-single-core"] }
+
+embedded-io-async = { version = "0.6.1" }
+
+# [patch.crates-io]
+# # make sure to get the latest git rev from github, you can see the latest one here:
+# # https://github.com/embassy-rs/embassy/commits/main/
+# embassy-embedded-hal = { git = "https://github.com/embassy-rs/embassy",     rev = "4cade64ebd34bf93458f17cfe85c5f710d0ff13c" }
+# embassy-executor     = { git = "https://github.com/embassy-rs/embassy",     rev = "4cade64ebd34bf93458f17cfe85c5f710d0ff13c" }
+# embassy-rp           = { git = "https://github.com/embassy-rs/embassy",     rev = "4cade64ebd34bf93458f17cfe85c5f710d0ff13c" }
+# embassy-sync         = { git = "https://github.com/embassy-rs/embassy",     rev = "4cade64ebd34bf93458f17cfe85c5f710d0ff13c" }
+# embassy-time         = { git = "https://github.com/embassy-rs/embassy",     rev = "4cade64ebd34bf93458f17cfe85c5f710d0ff13c" }
+# embassy-usb          = { git = "https://github.com/embassy-rs/embassy",     rev = "4cade64ebd34bf93458f17cfe85c5f710d0ff13c" }
+# embassy-usb-driver   = { git = "https://github.com/embassy-rs/embassy",     rev = "4cade64ebd34bf93458f17cfe85c5f710d0ff13c" }
+
+[profile.release]
+debug = 2
