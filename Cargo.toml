@@ -1,5 +1,5 @@
 [package]
-name = "SensorTest"
+name = "training-board-test"
 version = "0.1.0"
 edition = "2021"
 
@@ -9,33 +9,42 @@ edition = "2021"
 embassy-stm32 = { version = "0.1.0", features = [
     "defmt",
     "time-driver-any",
-    "stm32g070cb",
+    "stm32c011f4",
     "memory-x",
     "unstable-pac",
     "exti",
 ] }
-embassy-executor = { version = "0.5.0", features = [
+embassy-executor = { version = "0.6.0", features = [
     "nightly",
     "arch-cortex-m",
     "executor-thread",
     "defmt",
     "integrated-timers",
 ] }
-embassy-time = { version = "0.3.1", features = [
+embassy-time = { version = "0.3.2", features = [
     "defmt",
     "defmt-timestamp-uptime",
     "tick-hz-32_768",
 ] }
-defmt = "0.3.5"
-defmt-rtt = "0.4.0"
+defmt = "0.3.8"
+defmt-rtt = "0.4.1"
 cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }
 cortex-m-rt = "0.7.3"
-panic-probe = "0.3.1"
+panic-probe = "0.3.2"
+
+[profile.dev]
+lto = true
+opt-level = "s"
+codegen-units = 1
 
 [profile.release]
-debug = 2
+debug = true
+lto = true
+opt-level = "s"
+incremental = false
+codegen-units = 1
 
 [patch.crates-io]
-embassy-time = { git = "https://github.com/embassy-rs/embassy", rev = "2537fc6f4fcbdaa0fcea45a37382d61f59cc5767" }
-embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "2537fc6f4fcbdaa0fcea45a37382d61f59cc5767" }
-embassy-stm32 = { git = "https://github.com/embassy-rs/embassy", rev = "2537fc6f4fcbdaa0fcea45a37382d61f59cc5767" }
+embassy-time = { git = "https://github.com/embassy-rs/embassy", rev = "bc0180800d751e651c0d15c807285c11cdb4f486" }
+embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "bc0180800d751e651c0d15c807285c11cdb4f486" }
+embassy-stm32 = { git = "https://github.com/embassy-rs/embassy", rev = "bc0180800d751e651c0d15c807285c11cdb4f486" }

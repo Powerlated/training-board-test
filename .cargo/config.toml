@@ -1,5 +1,5 @@
 [target.thumbv6m-none-eabi]
-runner = 'probe-rs run --chip STM32G070CBTx'
+runner = 'probe-rs run --chip STM32C011F4Px'
 
 [build]
 target = "thumbv6m-none-eabi"
